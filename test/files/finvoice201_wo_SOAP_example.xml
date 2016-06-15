@@ -1,0 +1,111 @@
+
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<?xml-stylesheet type="text/xsl" href="Finvoice.xsl"?>
+<Finvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="2.01" xsi:noNamespaceSchemaLocation="Finvoice2.01.xsd">
+  <MessageTransmissionDetails>
+    <MessageSenderDetails>
+      <FromIdentifier>from identifier</FromIdentifier>
+      <FromIntermediator>from intermediator</FromIntermediator>
+    </MessageSenderDetails>
+    <MessageReceiverDetails>
+      <ToIdentifier>1234567890</ToIdentifier>
+      <ToIntermediator>1234567890</ToIntermediator>
+    </MessageReceiverDetails>
+    <MessageDetails>
+      <MessageIdentifier>123</MessageIdentifier>
+      <MessageTimeStamp>2016-04-08T17:04</MessageTimeStamp>
+    </MessageDetails>
+  </MessageTransmissionDetails>
+  <SellerPartyDetails>
+    <SellerPartyIdentifier>123456789-0</SellerPartyIdentifier>
+    <SellerPartyIdentifierUrlText/>
+    <SellerOrganisationName>PT Demo Oy</SellerOrganisationName>
+    <SellerOrganisationTaxCode>FI08381055</SellerOrganisationTaxCode>
+    <SellerPostalAddressDetails>
+      <SellerStreetName>Pursimiehenkatu 26 C</SellerStreetName>
+      <SellerTownName>Helsinki</SellerTownName>
+      <SellerPostCodeIdentifier>00100</SellerPostCodeIdentifier>
+      <CountryCode>FI</CountryCode>
+      <CountryName>FI</CountryName>
+    </SellerPostalAddressDetails>
+  </SellerPartyDetails>
+  <SellerInformationDetails>
+    <SellerAccountDetails>
+      <SellerAccountID IdentificationSchemeName="IBAN">FI1234567890</SellerAccountID>
+      <SellerBic IdentificationSchemeName="BIC">BANKFIHH</SellerBic>
+    </SellerAccountDetails>
+  </SellerInformationDetails>
+  <BuyerPartyDetails>
+    <BuyerPartyIdentifier/>
+    <BuyerOrganisationName>Keijo Kyykky</BuyerOrganisationName>
+    <BuyerOrganisationDepartment/>
+    <BuyerOrganisationDepartment/>
+    <BuyerOrganisationTaxCode>12345678</BuyerOrganisationTaxCode>
+    <BuyerPostalAddressDetails>
+      <BuyerStreetName>Kyykkykuja 1</BuyerStreetName>
+      <BuyerTownName>Helsinki</BuyerTownName>
+      <BuyerPostCodeIdentifier>00123</BuyerPostCodeIdentifier>
+      <CountryCode>FI</CountryCode>
+      <CountryName>FI</CountryName>
+      <BuyerPostOfficeBoxIdentifier/>
+    </BuyerPostalAddressDetails>
+  </BuyerPartyDetails>
+  <InvoiceDetails>
+    <InvoiceTypeCode>INV01</InvoiceTypeCode>
+    <InvoiceTypeText>Invoice</InvoiceTypeText>
+    <OriginCode>Original</OriginCode>
+    <InvoiceNumber>1014</InvoiceNumber>
+    <InvoiceDate Format="CCYYMMDD">20160330</InvoiceDate>
+    <InvoiceTotalVatExcludedAmount AmountCurrencyIdentifier="EUR">35,00</InvoiceTotalVatExcludedAmount>
+    <InvoiceTotalVatAmount AmountCurrencyIdentifier="EUR">8,75</InvoiceTotalVatAmount>
+    <InvoiceTotalVatIncludedAmount AmountCurrencyIdentifier="EUR">43,75</InvoiceTotalVatIncludedAmount>
+    <VatSpecificationDetails>
+      <VatBaseAmount AmountCurrencyIdentifier="EUR">35,00</VatBaseAmount>
+      <VatRatePercent>24</VatRatePercent>
+      <VatRateAmount AmountCurrencyIdentifier="EUR">8,75</VatRateAmount>
+    </VatSpecificationDetails>
+    <PaymentTermsDetails>
+      <PaymentTermsFreeText>14</PaymentTermsFreeText>
+      <InvoiceDueDate Format="CCYYMMDD">20160413</InvoiceDueDate>
+    </PaymentTermsDetails>
+  </InvoiceDetails>
+  <PaymentStatusDetails>
+    <PaymentStatusCode>NOTPAID</PaymentStatusCode>
+  </PaymentStatusDetails>
+  <InvoiceRow>
+    <ArticleIdentifier/>
+    <ArticleName>Kuntosaliohjaus 1h</ArticleName>
+    <DeliveredQuantity>1.0</DeliveredQuantity>
+    <UnitPriceAmount AmountCurrencyIdentifier="EUR">35,00</UnitPriceAmount>
+    <RowPositionIdentifier>1</RowPositionIdentifier>
+    <RowFreeText/>
+    <RowVatRatePercent>25,00</RowVatRatePercent>
+    <RowVatAmount AmountCurrencyIdentifier="EUR">8,75</RowVatAmount>
+    <RowVatExcludedAmount AmountCurrencyIdentifier="EUR">35,00</RowVatExcludedAmount>
+  </InvoiceRow>
+  <EpiDetails>
+    <EpiIdentificationDetails>
+      <EpiDate Format="CCYYMMDD">20160330</EpiDate>
+      <EpiReference>0</EpiReference>
+    </EpiIdentificationDetails>
+    <EpiPartyDetails>
+      <EpiBfiPartyDetails>
+        <EpiBfiIdentifier IdentificationSchemeName="BIC">NDEAFIHH</EpiBfiIdentifier>
+      </EpiBfiPartyDetails>
+      <EpiBeneficiaryPartyDetails>
+        <EpiNameAddressDetails>PT Demo Oy</EpiNameAddressDetails>
+        <EpiBei>123456789-0</EpiBei>
+        <EpiAccountID IdentificationSchemeName="IBAN">FI4255555500000</EpiAccountID>
+      </EpiBeneficiaryPartyDetails>
+    </EpiPartyDetails>
+    <EpiPaymentInstructionDetails>
+      <EpiPaymentInstructionId>1234567890</EpiPaymentInstructionId>
+      <EpiRemittanceInfoIdentifier IdentificationSchemeName="ISO">RF8513310143</EpiRemittanceInfoIdentifier>
+      <EpiInstructedAmount AmountCurrencyIdentifier="EUR">35,00</EpiInstructedAmount>
+      <EpiCharge ChargeOption="SLEV"/>
+      <EpiDateOptionDate Format="CCYYMMDD">20160413</EpiDateOptionDate>
+    </EpiPaymentInstructionDetails>
+  </EpiDetails>
+  <InvoiceUrlNameText>APIX_PDFFILE</InvoiceUrlNameText>
+  <InvoiceUrlText>file://test_invoice.pdf</InvoiceUrlText>
+</Finvoice>
