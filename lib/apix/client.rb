@@ -110,7 +110,7 @@ module Apix
       }
 
       response = Response.new(RestClient.put url, request_template, { content_type: "text/xml" })
-      return response
+      return response.to_hash
     end
 
     # Allows sending of a ZIP-file containing one to several documents in PDF format accompanied with an XML-metadata file. The letters are sent as defined in the agreements (customer settable options in the Apix management www-appliaction).

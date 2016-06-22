@@ -121,7 +121,12 @@ class ClientTest < Minitest::Test
 
   def test_address_query
     RestClient.stub :put, address_query_response do
-      assert_equal address_query_response, Apix::Client.address_query(id: '0838105-5').xml
+     response = Apix::Client.address_query(id: '0838105-5')
+     assert_equal "Devlab Oy", response[0]['ReceiverName']
+     assert_equal "0838105-5", response[0]['ReceiverYtunnus']
+     assert_equal "003708381055", response[0]['ReceivereInvoiceAddress']
+     assert_equal "Apix", response[0]['ReceiverOperator']
+     assert_equal "00372332748700001", response[0]['ReceiverOperatorId']
     end
   end
 
