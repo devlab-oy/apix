@@ -96,13 +96,14 @@ module Apix
 
     # Returns all of the einvoice addresses and operators for given company name and / or businessId.
     # PUT /addressquery?uid=<TransferID>&t=<timestamp>&d=SHA-256:<digest>
-    def self.address_query(id: nil)
+    def self.address_query(name: nil, id: nil)
       url = self.build_url('/addressquery', uid: Apix.configuration.transfer_id, t: Time.now.strftime('%Y%m%d%H%M%S'))
 
       request_template =  %{<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <Request version="1.0">
          <Content>
            <Group>
+            <Value type="ReceiverName">#{name}</Value>
             <Value type="ReceiverYtunnus">#{id}</Value>
            </Group>
          </Content>
