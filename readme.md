@@ -1,5 +1,7 @@
 ## Apix-ruby
 
+[![Build Status](https://semaphoreci.com/api/v1/devlab/apix/branches/master/badge.svg)](https://semaphoreci.com/devlab/apix)
+
 Ruby bindings for [Apix Messaging API](http://www.apix.fi/home-en.html)
 
 [API Documentation](https://wiki.apix.fi/display/IAD/Rest+API+for+external+usage)
