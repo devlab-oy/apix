@@ -1,5 +1,7 @@
 ## Apix-ruby
 
+[![Code Climate](https://codeclimate.com/repos/57833b7c19c624008f007cd9/badges/afc670ca91004f65a1bb/gpa.svg)](https://codeclimate.com/repos/57833b7c19c624008f007cd9/feed)
+[![Test Coverage](https://codeclimate.com/repos/57833b7c19c624008f007cd9/badges/afc670ca91004f65a1bb/coverage.svg)](https://codeclimate.com/repos/57833b7c19c624008f007cd9/coverage)
 [![Build Status](https://semaphoreci.com/api/v1/devlab/apix/branches/master/badge.svg)](https://semaphoreci.com/devlab/apix)
 
 Ruby bindings for [Apix Messaging API](http://www.apix.fi/home-en.html)
