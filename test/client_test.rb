@@ -130,6 +130,13 @@ class ClientTest < Minitest::Test
     end
   end
 
+  # SendPrintZIP
+  def test_send_print_zip
+    RestClient.stub :put, send_print_zip_response do
+      assert_equal send_print_zip_response, Apix::Client.send_print_zip('test/files/test_paper_invoice.zip').xml
+    end
+  end
+
   private
 
     def address_query_response
@@ -201,4 +208,28 @@ class ClientTest < Minitest::Test
       }
     end
 
+    def send_print_zip_response
+      %{<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Response version="1.0">
+             <Status>OK</Status>
+             <StatusCode>1000</StatusCode>
+             <FreeText language="en">OK</FreeText>
+             <Content>
+                <Group>
+                <Value type="BatchID">1633b003-0315-44ca-a687-a25f92bf6123</Value>
+                <Value type="Saldo">199</Value>
+                <Value type="CostInCredits">1</Value>
+                <Value type="NetworkedInvoices">0</Value>
+                <Value type="Letters">1</Value>
+                <Value type="LetterPages">2</Value>
+                <Value type="AcceptedDocument">1</Value>
+                </Group>
+                <Group>
+                        <Value type="AcceptedDocumentID">1001</Value>
+                        <Value type="ValidateText">Document InvoiceID OK</Value>
+                </Group>
+             </Content>
+        </Response>
+      }
+    end
 end
