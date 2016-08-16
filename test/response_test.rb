@@ -44,6 +44,10 @@ class ResponseTest < Minitest::Test
     assert_equal "ERR", response.status
     assert_equal "7599", response.status_code
     assert "Parameter can't be null: id.", response.error_messages[1]
+
+    response = Apix::Response.new("")
+    assert_equal nil, response.status
+    assert_equal "Empty response", response.error_messages[0]
   end
 
   def test_response_to_hash

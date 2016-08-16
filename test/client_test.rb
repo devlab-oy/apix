@@ -121,12 +121,19 @@ class ClientTest < Minitest::Test
 
   def test_address_query
     RestClient.stub :put, address_query_response do
-     response = Apix::Client.address_query(id: '0838105-5')
-     assert_equal "Devlab Oy", response[0]['ReceiverName']
-     assert_equal "0838105-5", response[0]['ReceiverYtunnus']
-     assert_equal "003708381055", response[0]['ReceivereInvoiceAddress']
-     assert_equal "Apix", response[0]['ReceiverOperator']
-     assert_equal "00372332748700001", response[0]['ReceiverOperatorId']
+      response = Apix::Client.address_query(id: '0838105-5', name: 'Devlab Oy')
+      assert_equal "Devlab Oy", response[0]['ReceiverName']
+      assert_equal "0838105-5", response[0]['ReceiverYtunnus']
+      assert_equal "003708381055", response[0]['ReceivereInvoiceAddress']
+      assert_equal "Apix", response[0]['ReceiverOperator']
+      assert_equal "00372332748700001", response[0]['ReceiverOperatorId']
+    end
+  end
+
+  # SendPrintZIP
+  def test_send_print_zip
+    RestClient.stub :put, send_print_zip_response do
+      assert_equal send_print_zip_response, Apix::Client.send_print_zip('test/files/test_paper_invoice.zip').xml
     end
   end
 
@@ -201,4 +208,28 @@ class ClientTest < Minitest::Test
       }
     end
 
+    def send_print_zip_response
+      %{<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Response version="1.0">
+             <Status>OK</Status>
+             <StatusCode>1000</StatusCode>
+             <FreeText language="en">OK</FreeText>
+             <Content>
+                <Group>
+                <Value type="BatchID">1633b003-0315-44ca-a687-a25f92bf6123</Value>
+                <Value type="Saldo">199</Value>
+                <Value type="CostInCredits">1</Value>
+                <Value type="NetworkedInvoices">0</Value>
+                <Value type="Letters">1</Value>
+                <Value type="LetterPages">2</Value>
+                <Value type="AcceptedDocument">1</Value>
+                </Group>
+                <Group>
+                        <Value type="AcceptedDocumentID">1001</Value>
+                        <Value type="ValidateText">Document InvoiceID OK</Value>
+                </Group>
+             </Content>
+        </Response>
+      }
+    end
 end

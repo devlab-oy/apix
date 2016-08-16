@@ -96,13 +96,14 @@ module Apix
 
     # Returns all of the einvoice addresses and operators for given company name and / or businessId.
     # PUT /addressquery?uid=<TransferID>&t=<timestamp>&d=SHA-256:<digest>
-    def self.address_query(id: nil)
+    def self.address_query(name: nil, id: nil)
       url = self.build_url('/addressquery', uid: Apix.configuration.transfer_id, t: Time.now.strftime('%Y%m%d%H%M%S'))
 
       request_template =  %{<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <Request version="1.0">
          <Content>
            <Group>
+            <Value type="ReceiverName">#{name}</Value>
             <Value type="ReceiverYtunnus">#{id}</Value>
            </Group>
          </Content>
@@ -116,7 +117,7 @@ module Apix
     # Allows sending of a ZIP-file containing one to several documents in PDF format accompanied with an XML-metadata file. The letters are sent as defined in the agreements (customer settable options in the Apix management www-appliaction).
     # Note: Usage of this service requires a valid contract of type 'Lähetä'.
     # PUT /print?soft=<software>&ver=<version>&TraID=<TransferID>&t=<Timestamp>&d=SHA-256:<digest>
-    def send_print_zip(filepath)
+    def self.send_print_zip(filepath)
       return unless File.exists?(filepath)
 
       file_content = File.open(filepath).read
@@ -125,12 +126,12 @@ module Apix
       params = {
         soft: Apix.configuration.soft,
         ver: Apix.configuration.ver,
-        TraID: @transfer_id,
+        TraID: Apix.configuration.transfer_id,
         t: timestamp,
-        d: "SHA-256:" + calculate_digest_with_transfer_key(@transfer_key, {transfer_id: @transfer_id, ts: timestamp})
+        d: "SHA-256:" + self.calculate_digest_with_transfer_key(Apix.configuration.transfer_key, {transfer_id: Apix.configuration.transfer_id, ts: timestamp})
       }
 
-      request(:put, '/print', params, file_content, { content_type: 'application/octet-stream', content_length: file_content.size })
+      self.request(:put, '/print', params, file_content, { content_type: 'application/octet-stream', content_length: file_content.size })
     end
 
     private
