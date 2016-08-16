@@ -10,7 +10,8 @@ module Apix
     end
 
     def status
-      @doc.xpath('//Status').text
+      status = @doc.xpath('//Status').text
+      return status unless status.empty?
     end
 
     def status_code
@@ -18,7 +19,9 @@ module Apix
     end
 
     def error_messages
-      if status == "ERR"
+      if status.nil?
+        ["Empty response"]
+      elsif status == "ERR"
         @doc.xpath('//FreeText').text
       else
         []
