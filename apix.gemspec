@@ -1,6 +1,10 @@
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'apix/version'
+
 Gem::Specification.new do |s|
   s.name        = 'apix'
-  s.version     = '0.0.1'
+  s.version     = Apix::VERSION
   s.date        = '2016-02-17'
   s.summary     = "Apix messaging Rest API client"
   s.description = "Client to interract with Apix messaging electronix invoicing API."
