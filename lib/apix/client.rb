@@ -54,7 +54,7 @@ module Apix
     # Note: Usage of this service requires a valid contract of type 'Lähetä'.
     # PUT /invoices?soft=<software>&ver=<version>&TraID=<TransferID>&t=<Timestamp>&d=SHA-256:<digest>
     def self.send_invoice_zip(filepath)
-      return unless File.exists?(filepath)
+      return unless File.exist?(filepath)
 
       file_content = File.open(filepath).read
       timestamp = Time.now.strftime('%Y%m%d%H%M%S')
@@ -118,7 +118,7 @@ module Apix
     # Note: Usage of this service requires a valid contract of type 'Lähetä'.
     # PUT /print?soft=<software>&ver=<version>&TraID=<TransferID>&t=<Timestamp>&d=SHA-256:<digest>
     def self.send_print_zip(filepath)
-      return unless File.exists?(filepath)
+      return unless File.exist?(filepath)
 
       file_content = File.open(filepath).read
       timestamp = Time.now.strftime('%Y%m%d%H%M%S')
